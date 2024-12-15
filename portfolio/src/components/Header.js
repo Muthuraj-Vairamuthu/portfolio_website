@@ -1,22 +1,19 @@
+// src/components/Header.js
 import React from 'react';
-import { Navbar, Nav, Container } from 'react-bootstrap';
 
-const Header = () => {
+const Header = ({ scrollToSection, refs }) => {
+  const { homeRef, aboutRef, projectsRef, contactRef } = refs;
+
   return (
-    <Navbar bg="dark" variant="dark" expand="lg">
-      <Container>
-        <Navbar.Brand href="/">My Portfolio</Navbar.Brand>
-        <Navbar.Toggle aria-controls="basic-navbar-nav" />
-        <Navbar.Collapse id="basic-navbar-nav">
-          <Nav className="ml-auto">
-            <Nav.Link href="/">Home</Nav.Link>
-            <Nav.Link href="/about">About</Nav.Link>
-            <Nav.Link href="/projects">Projects</Nav.Link>
-            <Nav.Link href="/contact">Contact</Nav.Link>
-          </Nav>
-        </Navbar.Collapse>
-      </Container>
-    </Navbar>
+    <nav style={{ display: 'flex', justifyContent: 'space-between', padding: '10px 20px', background: '#1f1f1f', color: 'white' }}>
+      <div style={{ fontWeight: 'bold', fontSize: '1.5rem' }}>My Portfolio</div>
+      <div>
+        <span style={{ margin: '0 15px', cursor: 'pointer' }} onClick={() => scrollToSection(homeRef)}>Home</span>
+        <span style={{ margin: '0 15px', cursor: 'pointer' }} onClick={() => scrollToSection(aboutRef)}>About</span>
+        <span style={{ margin: '0 15px', cursor: 'pointer' }} onClick={() => scrollToSection(projectsRef)}>Projects</span>
+        <span style={{ margin: '0 15px', cursor: 'pointer' }} onClick={() => scrollToSection(contactRef)}>Contact</span>
+      </div>
+    </nav>
   );
 };
 

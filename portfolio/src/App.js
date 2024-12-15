@@ -1,25 +1,41 @@
-import React from 'react';
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+// src/App.js
+import React, { useRef } from 'react';
+import Header from './components/Header';
+import Footer from './components/Footer';
 import Home from './pages/Home';
 import About from './pages/About';
 import Projects from './pages/Projects';
 import Contact from './pages/Contact';
-import Header from './components/Header';
-import Footer from './components/Footer';
-import './styles/App.css';
 
 function App() {
+  const homeRef = useRef(null);
+  const aboutRef = useRef(null);
+  const projectsRef = useRef(null);
+  const contactRef = useRef(null);
+
+  const scrollToSection = (ref) => {
+    ref.current.scrollIntoView({ behavior: 'smooth' });
+  };
+
   return (
-    <Router>
-      <Header />
-      <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/about" element={<About />} />
-        <Route path="/projects" element={<Projects />} />
-        <Route path="/contact" element={<Contact />} />
-      </Routes>
+    <div>
+      <Header scrollToSection={scrollToSection} refs={{ homeRef, aboutRef, projectsRef, contactRef }} />
+      <main>
+        <section ref={homeRef}>
+          <Home />
+        </section>
+        <section ref={aboutRef}>
+          <About />
+        </section>
+        <section ref={projectsRef}>
+          <Projects />
+        </section>
+        <section ref={contactRef}>
+          <Contact />
+        </section>
+      </main>
       <Footer />
-    </Router>
+    </div>
   );
 }
 
