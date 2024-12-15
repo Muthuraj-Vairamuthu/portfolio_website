@@ -36,3 +36,22 @@
     transform: rotate(360deg);
   }
 }
+
+@media (max-width: 768px) {
+  h1 {
+    font-size: 2rem;
+  }
+
+  p {
+    font-size: 1rem;
+  }
+
+  button {
+    font-size: 14px;
+    padding: 8px 15px;
+  }
+
+  .navbar .nav-link {
+    font-size: 14px;
+  }
+}

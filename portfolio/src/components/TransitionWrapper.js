@@ -1,43 +1,38 @@
-import { motion, AnimatePresence } from 'framer-motion';
+import React from 'react';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import Home from './pages/Home';
+import About from './pages/About';
+import Projects from './pages/Projects';
+import Contact from './pages/Contact';
+import Header from './components/Header';
+import Footer from './components/Footer';
+import TransitionWrapper from './components/TransitionWrapper';
 
-const pageVariants = {
-  initial: {
-    opacity: 0,
-    x: "-100vw",
-    scale: 0.8
-  },
-  in: {
-    opacity: 1,
-    x: 0,
-    scale: 1
-  },
-  out: {
-    opacity: 0,
-    x: "100vw",
-    scale: 1.2
-  }
-};
-
-const pageTransition = {
-  type: "tween",
-  ease: "anticipate",
-  duration: 0.5
-};
-
-const TransitionWrapper = ({ children }) => {
+function App() {
   return (
-    <AnimatePresence>
-      <motion.div
-        initial="initial"
-        animate="in"
-        exit="out"
-        variants={pageVariants}
-        transition={pageTransition}
-      >
-        {children}
-      </motion.div>
-    </AnimatePresence>
+    <Router>
+      <Header />
+      <Routes>
+        <Route
+          path="/"
+          element={<TransitionWrapper><Home /></TransitionWrapper>}
+        />
+        <Route
+          path="/about"
+          element={<TransitionWrapper><About /></TransitionWrapper>}
+        />
+        <Route
+          path="/projects"
+          element={<TransitionWrapper><Projects /></TransitionWrapper>}
+        />
+        <Route
+          path="/contact"
+          element={<TransitionWrapper><Contact /></TransitionWrapper>}
+        />
+      </Routes>
+      <Footer />
+    </Router>
   );
-};
+}
 
-export default TransitionWrapper;
+export default App;
